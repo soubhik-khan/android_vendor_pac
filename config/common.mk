@@ -227,6 +227,10 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=1
 
+# Adaway
+PRODUCT_COPY_FILES += \
+    vendor/pac/prebuilt/Adaway/Adaway.apk:system/app/Adaway/Adaway.apk
+
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
 $(call prepend-product-if-exists, vendor/extra/product.mk)
