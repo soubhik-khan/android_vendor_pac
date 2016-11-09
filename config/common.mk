@@ -37,6 +37,20 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
+ifneq ($(TARGET_BUILD_VARIANT),userdebug)
+# Enable ADB authentication
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
+endif
+endif
+
+# NexusLauncher
+PRODUCT_COPY_FILES += \
+    vendor/pac/prebuilt/NexusLauncher/NexusLauncher.apk:system/app/NexusLauncher/NexusLauncher.apk
+
+# Wallpaper
+PRODUCT_COPY_FILES += \
+    vendor/pac/prebuilt/Wallpaper/Wallpaper.apk:system/app/Wallpaper/Wallpaper.apk
+   
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/pac/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
@@ -112,10 +126,8 @@ PRODUCT_PACKAGES += \
 
 # Custom PAC packages
 PRODUCT_PACKAGES += \
-    Trebuchet \
     AudioFX \
     CMWallpapers \
-    CMFileManager \
     Eleven \
     LockClock \
     CMUpdater \
@@ -213,7 +225,7 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.root_access=0
+    persist.sys.root_access=1
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
